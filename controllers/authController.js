@@ -30,7 +30,9 @@ router.post('/register', async(req, res) => {
 });
 
 router.post('/autentica', async(req, res) =>{
-    const {email, password} = req.body;
+    res.send({ok: true});
+
+    /*const {email, password} = req.body;
     const user = await User.findOne({ email }).select('+password');
     if(!user)
         return res.status(400).send({error: 'Erroaqui'});
@@ -40,6 +42,6 @@ router.post('/autentica', async(req, res) =>{
     res.send({
         user, 
         token: geraToken({id: user.id}),
-    });
+    });*/
 });
 module.exports = (app) => app.use('/auth', router);
