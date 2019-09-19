@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/agoravai', {useUnifiedTopology: true,
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/agoravai', {useUnifiedTopology: true,
 useNewUrlParser: true});
 mongoose.set('useCreateIndex', true);
 mongoose.Promise = global.Promise;
