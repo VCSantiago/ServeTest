@@ -1,9 +1,9 @@
 const express = require('express');
+const User = require('../models/user');
+const authConfig = require('../config/auth');
 const bcrypt = require('bcryptjs');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
-const authConfig = require('../config/auth');
-const User = require('../models/user');
 
 function geraToken(params = {}){
     return jwt.sign(params, authConfig.secret, {
@@ -12,7 +12,6 @@ function geraToken(params = {}){
 }
 router.post('/register', async(req, res) => {
     const {name, email, password} = req.body;
-   
     try{
         if(await User.findOne({ email }))
             return res.status(400).send({error: 'Erroaqui'});
@@ -28,11 +27,8 @@ router.post('/register', async(req, res) => {
     }
 
 });
-
 router.post('/autentica', async(req, res) =>{
-    res.send({ok: true});
-
-    /*const {email, password} = req.body;
+    const {email, password} = req.body;
     const user = await User.findOne({ email }).select('+password');
     if(!user)
         return res.status(400).send({error: 'Erroaqui'});
@@ -42,6 +38,6 @@ router.post('/autentica', async(req, res) =>{
     res.send({
         user, 
         token: geraToken({id: user.id}),
-    });*/
+    });
 });
 module.exports = (app) => app.use('/auth', router);
