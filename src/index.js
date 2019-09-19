@@ -19,7 +19,7 @@ app.post('/register', async(req, res) => {
     console.log(email+""+name+""+password);
     res.send(email);
 });
-//require('../controllers/authController')(app);
+require('../controllers/authController')(app);
 //require('../controllers/postController')(app);
 //require('../controllers/projeto')(app);
 
