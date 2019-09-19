@@ -20,7 +20,7 @@ app.post('/register', async(req, res) => {
     res.send(email);
 });
 require('../controllers/authController')(app);
-require('../controllers/postController')(app);
+//require('../controllers/postController')(app);
 require('../controllers/projeto')(app);
 
 app.listen(process.env.PORT || 3000);

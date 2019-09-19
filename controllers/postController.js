@@ -1,4 +1,4 @@
-const Post = require('../models/post');
+/*const Post = require('../models/post');
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const express = require('express');
@@ -15,4 +15,4 @@ router.post('/', async(req, res) => {
     var a =users.name;
     return res.send({post, nome: a});
 });
-module.exports = app => app.use('/post', router);
+module.exports = app => app.use('/post', router);*/
