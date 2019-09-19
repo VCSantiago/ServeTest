@@ -22,4 +22,4 @@ app.post('/register', async(req, res) => {
 require('../controllers/authController')(app);
 require('../controllers/postController')(app);
 require('../controllers/projeto')(app);
-app.listen(3333);
+app.listen(process.env.PORT || 3000);
