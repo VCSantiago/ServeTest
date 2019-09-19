@@ -28,11 +28,10 @@ router.post('/register', async(req, res) => {
     }
 
 });
-/*
-router.post('/autentica', async(req, res) =>{
 
+router.post('/autentica', async(req, res) =>{
     const {email, password} = req.body;
-    const user = await  User.findOne({ email }).select('+password');
+    const user = await User.findOne({ email }).select('+password');
     if(!user)
         return res.status(400).send({error: 'Erroaqui'});
     if(!await bcrypt.compare(password, user.password))
@@ -43,6 +42,4 @@ router.post('/autentica', async(req, res) =>{
         token: geraToken({id: user.id}),
     });
 });
-
 module.exports = (app) => app.use('/auth', router);
-*/
