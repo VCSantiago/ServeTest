@@ -1,10 +1,10 @@
-/*const express = require('express');
-const User = require('../models/User');
+const express = require('express');
 const bcrypt = require('bcryptjs');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
 const authConfig = require('../config/auth');
-
+const User = require('../models/User');
+/*
 function geraToken(params = {}){
     return jwt.sign(params, authConfig.secret, {
         expiresIn: 86400,
