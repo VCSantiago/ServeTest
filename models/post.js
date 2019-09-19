@@ -1,0 +1,17 @@
+const mongoose = require('../database');
+
+const PostSchema = new mongoose.Schema({
+    autor: String,
+    place: String,
+    description: String,
+    hastags: String,
+    image: String,
+    idUser: String,
+    likes: {
+        type: Number,
+        default: 0
+    }
+},{
+    timestamps: true
+});
+module.exports = mongoose.model('Post', PostSchema);
