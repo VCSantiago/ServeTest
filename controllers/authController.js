@@ -4,7 +4,7 @@ const router = express.Router();
 const jwt = require('jsonwebtoken');
 const authConfig = require('../config/auth');
 const User = require('../models/User');
-/*
+
 function geraToken(params = {}){
     return jwt.sign(params, authConfig.secret, {
         expiresIn: 86400,
@@ -28,6 +28,7 @@ router.post('/register', async(req, res) => {
     }
 
 });
+/*
 router.post('/autentica', async(req, res) =>{
 
     const {email, password} = req.body;
