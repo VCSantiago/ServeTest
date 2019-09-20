@@ -1,5 +1,5 @@
 const express = require('express');
-const User = require('../models/user');
+const User = require('../models/User');
 const authConfig = require('../config/auth');
 const bcrypt = require('bcryptjs');
 const router = express.Router();
@@ -11,12 +11,13 @@ function geraToken(params = {}){
     })
 }
 router.post('/register', async(req, res) => {
-    const {name, email, password} = req.body;
+    const {email} = req.body;
     try{
         if(await User.findOne({ email }))
             return res.status(400).send({error: 'Erroaqui'});
         const user = await User.create(req.body);
-        user.password = undefined;
+        user.senha = undefined;
+        user.confirmarSenha = undefined;
         return  res.send({
             user, 
             token: geraToken({id: user.id}),
@@ -28,13 +29,13 @@ router.post('/register', async(req, res) => {
 
 });
 router.post('/autentica', async(req, res) =>{
-    const {email, password} = req.body;
-    const user = await User.findOne({ email }).select('+password');
+    const {email, senha} = req.body;
+    const user = await User.findOne({ email }).select('+senha');
     if(!user)
         return res.status(400).send({error: 'Erroaqui'});
-    if(!await bcrypt.compare(password, user.password))
+    if(!await bcrypt.compare(senha, user.senha))
         return res.status(400).send({error: 'Erroaqui'});
-    user.password = undefined;
+    user.senha = undefined;
     res.send({
         user, 
         token: geraToken({id: user.id}),
