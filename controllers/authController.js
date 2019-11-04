@@ -11,6 +11,7 @@ function geraToken(params = {}){
     })
 }
 router.post('/register', async(req, res) => {
+    console.log("veio");
     const {email} = req.body;
     try{
         if(await User.findOne({ email }))
@@ -18,7 +19,8 @@ router.post('/register', async(req, res) => {
         const user = await User.create(req.body);
         user.senha = undefined;
         user.confirmarSenha = undefined;
-        return  res.send({
+        
+        return res.send({
             user, 
             token: geraToken({id: user.id}),
         });
@@ -30,6 +32,8 @@ router.post('/register', async(req, res) => {
 });
 router.post('/autentica', async(req, res) =>{
     const {email, senha} = req.body;
+    console.log(senha);
+    console.log(email);
     const user = await User.findOne({ email }).select('+senha');
     if(!user)
         return res.status(400).send({error: 'Erroaqui'});

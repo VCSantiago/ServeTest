@@ -1,18 +1,10 @@
-/*const Post = require('../models/post');
-const User = require('../models/User');
-const bcrypt = require('bcryptjs');
 const express = require('express');
+const Post = require('../models/post');
 const auth = require('../midd/auth');
 const router = express.Router();
 router.use(auth);
-
-router.post('/', async(req, res) => {
-    const users = await User.findById(req.userId);
-
-    const post = await Post.create(req.body);
-   
-    post.idUser = req.userId;
-    var a =users.name;
-    return res.send({post, nome: a});
+router.get('/', async(req, res) => {
+    const posts = await Post.find().sort('-createdAt');
+    return res.json(posts);
 });
-module.exports = app => app.use('/post', router);*/
+module.exports = app => app.use('/post',router);
