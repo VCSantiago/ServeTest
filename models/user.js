@@ -24,6 +24,10 @@ const UserSchema = new mongoose.Schema({
     createdAt: {
         type: Date,
         default: Date.now,
+    },
+    recuperarSenha: {
+        type: String,
+        require: false
     }
 });
 UserSchema.pre('save', async function(next){

@@ -23,4 +23,5 @@ require('../controllers/authController')(app);
 require('../controllers/postController')(app);
 require('../controllers/projeto')(app);
 
+//app.listen(process.env.PORT || 3000);
 app.listen(3000);
