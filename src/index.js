@@ -1,7 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const app = express();
 
+const app = express();
+const server = require('http').Server(app);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
@@ -23,5 +24,6 @@ require('../controllers/authController')(app);
 require('../controllers/postController')(app);
 require('../controllers/projeto')(app);
 
+server.listen(process.env.PORT || 3333);
 //app.listen(process.env.PORT || 3000);
-app.listen(3000);
+//app.listen(3000);
