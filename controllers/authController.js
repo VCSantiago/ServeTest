@@ -1,5 +1,6 @@
 const express = require('express');
 const User = require('../models/user');
+const Post = require('../models/post');
 const authConfig = require('../config/auth');
 const bcrypt = require('bcryptjs');
 const router = express.Router();
@@ -120,4 +121,16 @@ router.post("/recuperar/:identificador", async(req, res) =>{
         res.send("As senhas não correspondem");
     
 });
+
+router.post('/filtro/:tipo', async(req, res) =>{
+    const tipo = req.params.tipo;
+    const {val1, val2} = req.body;
+    const posts;
+    if( tipo !== "preco" )
+        posts = await Post.find({tipo: val1});
+    else
+        posts = await Post.find({tipo: {$gte: val1, $lte: val2}});
+    res.send(posts);
+});
+
 module.exports = (app) => app.use('/auth', router);
